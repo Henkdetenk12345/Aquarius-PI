@@ -120,7 +120,7 @@ class Aquarius:
 		log(f"Starting {name} VLC -> {url}")
 		vlc_cmd = (
 			f"DISPLAY={self.display} vlc "
-			f"--no-video-title-show --no-spu --avcodec-hw none "
+			f"--no-video-title-show --no-spu"
 			f"--intf rc --rc-unix {sock_path} "
 			f"--vout=x11 "
 			f"--autoscale "
