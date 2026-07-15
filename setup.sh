@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Piquarius Setup for Raspberry Pi 5"
+echo "Aquarius-PI Setup for Raspberry Pi 5"
 echo "===================================="
 echo ""
 
