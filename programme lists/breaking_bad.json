@@ -1,0 +1,27 @@
+{
+  "title": "Breaking Bad",
+  "description": "Een scheikundeleraar bij wie terminale longkanker is vastgesteld, gaat samen met een oud-leerling methamfetamine produceren en verkopen om de toekomst van zijn gezin veilig te stellen.",
+  "episodes": [
+    {
+      "url": "Breaking Bad/E01 - Pilot.mp4"
+    },
+    {
+      "url": "Breaking Bad/E02 - Cats In The Bag.mp4"
+    },
+    {
+      "url": "Breaking Bad/E03 - And The Bag Is In The River.mp4"
+    },
+    {
+      "url": "Breaking Bad/E04 - Cancer Man.mp4"
+    },
+    {
+      "url": "Breaking Bad/E05 - Grey Matter.mp4"
+    },
+    {
+      "url": "Breaking Bad/E06 - Crazy Handful Of Nothin.mp4"
+    },
+    {
+      "url": "Breaking Bad/E07 - A No-Rough-Stuff-Type-Deal.mp4"
+    }
+  ]
+}

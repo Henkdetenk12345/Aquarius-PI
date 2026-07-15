@@ -123,6 +123,8 @@ class Aquarius:
 			f"--no-terminal "
 			f"--input-ipc-server={sock_path} "
 			f"--vo=x11 --hwdec=no "
+			f"--vd-lavc-threads=0 "
+			f"--framedrop=vo "
 			f"--no-sub --no-audio-display "
 			f"--fullscreen --fs "
 			f"--no-input-default-bindings "
@@ -203,12 +205,9 @@ class Aquarius:
 		log(f"Starting Chromium -> {target}")
 		cmd = (
 			f"DISPLAY={self.display} {path} "
-			f"--kiosk --noerrdialogs --disable-infobars "
-			f"--disable-session-crashed-bubble --disable-restore-session-state "
-			f"--no-first-run --no-sandbox "
-			f"--disable-gpu "
+			f"--ozone-platform=x11 --no-sandbox --disable-gpu "
+			f"--kiosk "
 			f"--autoplay-policy=no-user-gesture-required "
-			f"--hide-scrollbars --disable-features=ScrollbarUI "
 			f"--window-size={self.resolution.replace('x', ',')} "
 			f"--window-position=0,0 "
 			f"'{target}' > /tmp/aquarius-chromium.log 2>&1"
@@ -310,16 +309,40 @@ def main():
 	aquarius = Aquarius(config)
 
 	if "--test" in sys.argv:
-		print("TEST MODE")
-		log("TEST MODE")
+		source = None
+		if "--source" in sys.argv:
+			idx = sys.argv.index("--source")
+			source = sys.argv[idx + 1] if idx + 1 < len(sys.argv) else None
+
+		print(f"TEST MODE - source: {source or 'os1'}")
+		log(f"TEST MODE - source: {source or 'os1'}")
 		aquarius.start_xvfb()
 		aquarius.start_pulse()
 		aquarius.start_ffmpeg_output()
-		os1_url = aquarius.config.get("os1_rtmp_url", "")
-		if os1_url:
-			aquarius.start_mpv_instance("os1", os1_url, aquarius.os1_sock)
-		log("OS1 playing - Ctrl+C to stop")
-		print("OS1 playing - Ctrl+C to stop")
+
+		if source == "clock":
+			aquarius.start_chromium(aquarius.config.get("clock_url", "about:blank"), kill_mpvs=False)
+		elif source == "breakfiller":
+			aquarius.start_chromium(aquarius.config.get("breakfiller_url", "about:blank"), kill_mpvs=False)
+		elif source == "ident":
+			ident_folder = aquarius.config.get("ident_folder", "/home/max/idents")
+			idents = glob.glob(os.path.join(ident_folder, "*.mp4"))
+			if idents:
+				aquarius.start_mpv_instance("player", random.choice(idents), aquarius.player_sock)
+			else:
+				log(f"WARNING: No MP4s in {ident_folder}")
+		elif source == "media":
+			if aquarius.pending_url:
+				aquarius.start_mpv_instance("player", aquarius.pending_url, aquarius.player_sock)
+			else:
+				log("No media URL. Use: --source media /path/to/file.mp4")
+		else:
+			os1_url = aquarius.config.get("os1_rtmp_url", "")
+			if os1_url:
+				aquarius.start_mpv_instance("os1", os1_url, aquarius.os1_sock)
+
+		log(f"{source or 'os1'} playing - Ctrl+C to stop")
+		print(f"{source or 'os1'} playing - Ctrl+C to stop")
 		try:
 			while True:
 				time.sleep(1)

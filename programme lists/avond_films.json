@@ -1,0 +1,281 @@
+{
+  "title": "Films",
+  "description": "Leuke Films",
+  "episodes": [
+    {
+      "url": "Movies/James Bond 007 01 Dr No 1962 1080p x265 MultiAUDIO MultiSUB-_1080p_subs.mp4",
+      "title": "Dr. No",
+      "description": "De allereerste James Bond-film. Agent 007 wordt naar Jamaica gestuurd om de mysterieuze dr. No te stoppen, die van een eilandbasis raketlanceringen saboteert voor de geheime organisatie SPECTRE."
+    },
+    {
+      "url": "Movies/1963.From.Russia.With.Love.1804x1080.BDRip.x264.DTS-HD.MA_1080p_subs.mp4",
+      "title": "From Russia with Love",
+      "description": "James Bond reist naar Istanbul om een geheime Sovjet-codeerder te bemachtigen. Hij belandt midden in een SPECTRE-val waarbij een dodelijke huurmoordenaar en een verleidelijke Russische agente een rol spelen."
+    },
+    {
+      "url": "Movies/Goldfinger (1964) 1080p_1080p_subs.mp4",
+      "title": "Goldfinger",
+      "description": "Bond onderzoekt de goudsmokkelaar Auric Goldfinger en ontdekt een megalomaan plan om de goudreserves van Fort Knox radioactief te besmetten. Met de iconische Aston Martin DB5 en Oddjob met zijn dodelijke hoed."
+    },
+    {
+      "url": "Movies/1965.Thunderball.1920x816.BDRip.x264.DTS-HD.MA_1080p_subs.mp4",
+      "title": "Thunderball",
+      "description": "SPECTRE steelt twee atoombommen en eist een gigantisch losgeld. Bond duikt letterlijk de onderwaterwereld in om de wapens te vinden in de Bahama's voordat de deadline verstrijkt."
+    },
+    {
+      "url": "Movies/1967 You Only Live Twice_1080p_subs.mp4",
+      "title": "You Only Live Twice",
+      "description": "Ruimteschepen van de VS en USSR worden gekaapt, wat de wereld naar de rand van oorlog brengt. Bond reist naar Japan en infiltreert een vulkaan die als geheime SPECTRE-basis dient."
+    },
+    {
+      "url": "Movies/On Her Majestys Secret Service (1969) 1080p_1080p_subs.mp4",
+      "title": "On Her Majesty's Secret Service",
+      "description": "Bond, gespeeld door George Lazenby, valt verliefd op de dochter van een maffiabaas terwijl hij Blofeld opspoort in een Zwitsers bergchalet. De meest persoonlijke en emotionele Bond-film."
+    },
+    {
+      "url": "Movies/Where.Eagles.Dare.(1968).1080P.mp4",
+      "title": "Where Eagles Dare",
+      "description": "Tijdens de Tweede Wereldoorlog infiltreert een Brits-Amerikaans eliteteam een onneembaar geacht Duits kasteel in de Alpen om een gevangen generaal te bevrijden. Met Clint Eastwood en Richard Burton."
+    },
+    {
+      "url": "Movies/The Dirty Dozen 1967 Bdrip 1080P Highcode- Publichash.mp4",
+      "title": "The Dirty Dozen",
+      "description": "Een Amerikaanse majoor krijgt de opdracht twaalf criminele soldaten te trainen voor een vrijwel zekere zelfmoordmissie: het uitschakelen van een Nazi-officiersvakantieresort vlak voor D-Day."
+    },
+    {
+      "url": "Movies/Battle Of The Bulge (1965) 1080p BluRay_1080p_subs.mp4",
+      "title": "Battle of the Bulge",
+      "description": "Het epische verhaal van de laatste grote tegenaanval van de Duitsers in de Ardennen in de winter van 1944. Een spectaculaire oorlogsfilm met massale tankgevechten en strategische spanning."
+    },
+    {
+      "url": "Movies/The Great Escape (1963) 1080P Eng-Ita Multisub X264 Bluray - La Grande Fuga -Shiv@.mp4",
+      "title": "The Great Escape",
+      "description": "Gebaseerd op een waargebeurd verhaal: geallieerde krijgsgevangenen beramen de grootste ontsnappingspoging uit de geschiedenis in een Duits kamp. Met Steve McQueen en zijn iconische motorscène."
+    },
+    {
+      "url": "Movies/1982.First.Blood.1920X818.Bdrip.X264.Dts-Hd.Ma.mp4",
+      "title": "First Blood",
+      "description": "Vietnam-veteraan John Rambo wordt onterecht gepest door een plaatselijke sheriff en vlucht het bos in. Wat begint als een achtervolging escaleert tot een oorlog tussen één man en de hele politiemacht."
+    },
+    {
+      "url": "Movies/All The Way Boys (1972) Nl Subs - Hillspencer.mp4",
+      "title": "All the Way Boys",
+      "description": "Het komische duo Bud Spencer en Terence Hill spelen twee avonturiers die met een oud vliegtuigje neerstorten in Zuid-Amerika en verstrikt raken in allerlei wilde avonturen vol humor en vuistgevechten."
+    },
+    {
+      "url": "Movies/De Vier Vuisten Op Safari (Nl Subs) - Hillspencer.mp4",
+      "title": "De Vier Vuisten op Safari",
+      "description": "Bud Spencer en Terence Hill trekken op safari door Afrika waarbij ze zoals altijd terechtkomen in komische vechtpartijen, slimme streken en onverwachte avonturen in de wildernis."
+    },
+    {
+      "url": "Movies/De Vier Vuisten Slaan Op Hol (1983) Nl Subs - Hillspencer.mp4",
+      "title": "De Vier Vuisten Slaan op Hol",
+      "description": "Bud Spencer en Terence Hill zijn terug in een nieuwe reeks grappige avonturen waarbij de vuisten wederom rijkelijk vliegen. Typische Italiaanse actiekomedie met het iconische duo."
+    },
+    {
+      "url": "Movies/Double Trouble (1994-Nl Subs) - Hillspencer.mp4",
+      "title": "Double Trouble",
+      "description": "Twee broers met tegengestelde karakters — één politieagent, één oplichter — worden gedwongen samen te werken als ze midden in een diamantsmokkelzaak belanden. Met Peter en David Paul als het onwaarschijnlijke duo."
+    },
+    {
+      "url": "Movies/American.Made.2017.1080P.Web-Dl.Dd5.1.X264.Nlsubs-Qoq.mp4",
+      "title": "American Made",
+      "description": "Gebaseerd op het waargebeurde verhaal van Barry Seal, een TWA-piloot die in de jaren 80 door de CIA wordt gerekruteerd en uiteindelijk ook voor het Medellín-kartel van Escobar gaat vliegen."
+    },
+    {
+      "url": "Movies/Armageddon (1998)_1080p_subs.mp4",
+      "title": "Armageddon",
+      "description": "Een asteroïde ter grootte van Texas koerst af op de aarde. NASA stuurt een team ruwe boorwerkers de ruimte in om een kernbom in de rots te plaatsen en de aarde te redden. Met Bruce Willis en Ben Affleck."
+    },
+    {
+      "url": "Movies/Back To The Future (1985).mp4",
+      "title": "Back to the Future",
+      "description": "Tiener Marty McFly reist per ongeluk 30 jaar terug in de tijd in de DeLorean van de excentrieke uitvinder Doc Brown. Hij moet zijn ouders aan elkaar koppelen én terugkomen naar 1985."
+    },
+    {
+      "url": "Movies/Back To The Future Part Ii (1989).mp4",
+      "title": "Back to the Future Part II",
+      "description": "Marty en Doc reizen naar het jaar 2015, maar een fout zorgt voor een dystopische alternatieve tijdlijn. Ze moeten terug naar 1955 om de geschiedenis te herstellen voordat alles verloren gaat."
+    },
+    {
+      "url": "Movies/Back To The Future Part Iii (1990).mp4",
+      "title": "Back to the Future Part III",
+      "description": "Doc Brown is gestrand in het Wilde Westen van 1885. Marty reist hem achterna om hem te redden, maar Doc wordt verliefd — wat de terugkeer naar heden bemoeilijkt. Het spannende slot van de trilogie."
+    },
+    {
+      "url": "Movies/Blood.Diamond.2006.Bluray.1080P.Dts-Hd.X264-Grym.mp4",
+      "title": "Blood Diamond",
+      "description": "In het door burgeroorlog verscheurde Sierra Leone zoekt een visser naar een zeldzame roze diamant die zijn gezin kan bevrijden. Een smokkelaar en een journalist helpen hem — elk met eigen motieven."
+    },
+    {
+      "url": "Movies/Die Hard (1988) Bdrip 720P Dts Highcode.mp4",
+      "title": "Die Hard",
+      "description": "NYPD-agent John McClane bezoekt zijn vrouw in Los Angeles wanneer het kantoorgebouw wordt overgenomen door terroristen. Alleen en op blote voeten strijdt hij tegen de bende van Hans Gruber."
+    },
+    {
+      "url": "Movies/Die Hard 2 (1990 ) Bdrip 720P Dts Highcode.mp4",
+      "title": "Die Hard 2",
+      "description": "McClane wacht op zijn vrouw op Dulles Airport wanneer terroristen de controle over het vliegveld overnemen. Alle vliegtuigen cirkelen boven Washington zonder te kunnen landen — en de brandstof raakt op."
+    },
+    {
+      "url": "Movies/Die Hard 3 (1995 ) Bdrip 720P Dts Highcode.mp4",
+      "title": "Die Hard: With a Vengeance",
+      "description": "McClane wordt door een mysterieuze stem door New York opgejaagd terwijl bommen de stad bedreigen. Met Samuel L. Jackson als gedwongen partner achtervolgt hij de broer van Hans Gruber."
+    },
+    {
+      "url": "Movies/Die Hard 4 (2007) Bdrip 720P Dts Higcode.mp4",
+      "title": "Live Free or Die Hard",
+      "description": "Hackers leggen de volledige digitale infrastructuur van Amerika plat. McClane moet een jonge computerhacker beschermen terwijl hij de cyberterroristen opjaagt die het land willen platleggen."
+    },
+    {
+      "url": "Movies/Die Hard 5 (2013) Extended Bdrip 720P Dts Highcode.mp4",
+      "title": "A Good Day to Die Hard",
+      "description": "McClane reist naar Moskou om zijn zoon Jack te helpen, die betrokken is bij een Russische gevangenisbreuk. Vader en zoon — beiden tough guys — moeten samenwerken terwijl de kogels fluiten."
+    },
+    {
+      "url": "Movies/E.T. - Extra Terrestrial - (1982)  Nl Gespr..mp4",
+      "title": "E.T. the Extra-Terrestrial",
+      "description": "Een buitenaards wezen wordt per ongeluk achtergelaten op aarde en wordt gevonden door de tienjarige Elliott. De twee sluiten een bijzondere vriendschap terwijl overheidsagenten het beestje opsporen."
+    },
+    {
+      "url": "Movies/Forrest.Gump.(1994).mp4",
+      "title": "Forrest Gump",
+      "description": "Het leven van de eenvoudige maar goedhartige Forrest Gump uit Alabama raakt verweven met de grootste historische momenten van de 20e eeuw — van de Vietnam-oorlog tot het Watergate-schandaal. Met Tom Hanks."
+    },
+    {
+      "url": "Movies/Fury.2014.1080P.Uhd.Bluray.Ddp7.1.Hdr.X265-Ncmt.mp4",
+      "title": "Fury",
+      "description": "April 1945: een Amerikaanse tankbemanning rukt diep door Nazi-Duitsland op. Sergerant Wardaddy en zijn mannen strijden in hun Sherman-tank 'Fury' voor overleving in de laatste bitse gevechten van de oorlog."
+    },
+    {
+      "url": "Movies/Indiana Jones and the Last Crusade (1989) 1080p_1080p_subs.mp4",
+      "title": "Indiana Jones and the Last Crusade",
+      "description": "Indy gaat op zoek naar zijn ontvoerde vader én de Heilige Graal. Het leidt hen door nazi-Duitsland naar het Midden-Oosten vol dodelijke vallen. Met Sean Connery als de grappige Professor Jones senior."
+    },
+    {
+      "url": "Movies/Johnny.Eng.2003.X264.1080.Ac3.Dts.Nlsubs-Qoq.mp4",
+      "title": "Johnny English",
+      "description": "De meest incompetente Britse geheim agent — Johnny English — moet een diamantendiefstaf oplossen en de kroonjuwelen terugvinden. Rowan Atkinson parodieert James Bond op hilarische wijze."
+    },
+    {
+      "url": "Movies/Jurassic Park (1993).mp4",
+      "title": "Jurassic Park",
+      "description": "Een miljardair opent een pretpark vol gekloonde dinosauriërs. Wanneer het beveiligingssysteem uitvalt, worden de bezoekers het doelwit van T-Rex en Velociraptors. Klassieke Spielberg-thriller."
+    },
+    {
+      "url": "Movies/The Lost World - Jurassic Park (1997).mp4",
+      "title": "The Lost World: Jurassic Park",
+      "description": "Op een tweede eiland leven dinosauriërs vrij in het wild. Een wetenschapsteam reist ernaartoe voor onderzoek, maar jagers willen de beesten vangen — wat leidt tot chaos en een T-Rex in San Diego."
+    },
+    {
+      "url": "Movies/Jurassic Park Iii (2001).mp4",
+      "title": "Jurassic Park III",
+      "description": "Dr. Alan Grant wordt onder valse voorwendselen meegelokt naar het dinosaurus-eiland om een vermist jongetje te vinden. Al snel jaagt een enorme Spinosaurus het groepje door het oerwoud."
+    },
+    {
+      "url": "Movies/Little.Fockers.2010.Nlsubs.X264.1080P.Bluray.Ac3-Dts-Srt.mp4",
+      "title": "Little Fockers",
+      "description": "Greg Focker probeert nog steeds de goedkeuring te winnen van zijn schoonvader Jack Byrnes, terwijl de tweeling opgroeit en een farmaceutische verkoopster wat te veel interesse toont in Greg."
+    },
+    {
+      "url": "Movies/Mission Impossible 1 Hd Nl Sub (1996).mp4",
+      "title": "Mission: Impossible",
+      "description": "IMF-agent Ethan Hunt wordt er ten onrechte van beschuldigd zijn team te hebben verraden. Om zijn naam te zuiveren moet hij een dubbele agent ontmaskeren en een spectaculaire inbraak in CIA-hoofdkwartier plegen."
+    },
+    {
+      "url": "Movies/Mission Impossible 2 Hd Nl Sub (2000).mp4",
+      "title": "Mission: Impossible 2",
+      "description": "Ethan Hunt moet een dodelijk virus én het tegengif terugstelen van een frauduleuze agent. Geregisseerd door John Woo met spectaculaire motorscènes en acrobatische gevechten."
+    },
+    {
+      "url": "Movies/Mr And Mrs Smith (2005) Bluray 1080P Dts-Hd Ac3 Vc1 Nl-Retailsub Remux.mp4",
+      "title": "Mr. & Mrs. Smith",
+      "description": "Een gewoon getrouwd stel ontdekt dat ze allebei geheime huurmoordenaars zijn — en dat ze elkaars volgende doelwit zijn. Brad Pitt en Angelina Jolie in een explosieve mix van actie en romantiek."
+    },
+    {
+      "url": "Movies/Papillon.1973.1080P.Bluray.X264 Gp-M-Nlsubs.mp4",
+      "title": "Papillon",
+      "description": "Gebaseerd op een waargebeurd verhaal: de Franse gevangene Henri 'Papillon' Charrière wordt veroordeeld voor een moord die hij niet gepleegd heeft en ontsnapt keer op keer van de beruchte strafkolonie op Duivelseiland."
+    },
+    {
+      "url": "Movies/Pirates Of The Caribbean The Curse Of The Black Pearl (2003)-Dsnp-1080P-Gp-M-Nlsubs.mp4",
+      "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "description": "De excentrieke piraat Jack Sparrow en smid Will Turner werken samen om de ontvoerde Elizabeth Swann te redden van een gevloekte piratenbemannen die 's nachts in skeletten veranderen."
+    },
+    {
+      "url": "Movies/Pirates Of The Caribbean Dead Man's Chest (2006)-Dsnp-1080P-Gp-M-Nlsubs.mp4",
+      "title": "Pirates of the Caribbean: Dead Man's Chest",
+      "description": "Jack Sparrow staat in het krijt bij de gevreesde Davy Jones en zijn spookschip De Vliegende Hollander. Hij moet het hart van Jones vinden — het enige wat hem kan redden van eeuwig dienstbaarheid."
+    },
+    {
+      "url": "Movies/Pirates Of The Caribbean At World's End (2007)-Dsnp-1080P-Gp-M-Nlsubs.mp4",
+      "title": "Pirates of the Caribbean: At World's End",
+      "description": "Jack Sparrow wordt bevrijd uit Davy Jones' locker terwijl de piraten van de wereld samenkomen voor een laatste episch gevecht tegen de Oost-Indische Compagnie die de zeeën wil beheersen."
+    },
+    {
+      "url": "Movies/Pirates Of The Caribbean On Stranger Tides (2011)-Dsnp-1080P-Gp-M-Nlsubs.mp4",
+      "title": "Pirates of the Caribbean: On Stranger Tides",
+      "description": "Jack Sparrow gaat op zoek naar de Fontein der Eeuwige Jeugd, terwijl hij wordt achtervolgd door de wrede piraat Zwartbaart en een mysterieuze vrouw uit zijn verleden."
+    },
+    {
+      "url": "Movies/Pirates Of The Caribbean Salazar's Revenge (2017)-Dsnp-1080P-Gp-M-Nlsubs.mp4",
+      "title": "Pirates of the Caribbean: Salazar's Revenge",
+      "description": "De geest van de Spaanse kapitein Salazar ontsnapt uit het Duivelsdriehoek om Jack Sparrow te vernietigen. Jack moet samen met een jonge astronoom de legendarische Trident of Poseidon vinden."
+    },
+    {
+      "url": "Movies/Pulp Fiction.1994.1080P.Nf.Web-Dl.Ddp5.1.H.264.Gp-M-Nlsubs.mp4",
+      "title": "Pulp Fiction",
+      "description": "Quentin Tarantino's meesterwerk vertelt in niet-chronologische volgorde de verweven verhalen van twee huurmoordenaars, een boksende crimineel en een overvallend koppel in het Los Angeles onderwereld."
+    },
+    {
+      "url": "Movies/Red.2010.Bluray.1080p.DTS-HD.x264-Grym@BTNET_1080p_subs.mp4",
+      "title": "RED",
+      "description": "Frank Moses is een gepensioneerde CIA-agent die plotseling het doelwit wordt van huurmoordenaars. Hij verzamelt zijn oude team van oudere maar gevaarlijke agenten voor één laatste missie."
+    },
+    {
+      "url": "Movies/Shutter Island (2010) Bluray 2160P Dv Hdr Dts-Hd Ma 5.1 Ac3 Hevc Nl-Retailsub Remux-Kappa.mp4",
+      "title": "Shutter Island",
+      "description": "US Marshal Teddy Daniels onderzoekt de verdwijning van een gevangene van een psychiatrisch ziekenhuis op een afgelegen eiland. Naarmate het onderzoek vordert, begint hij zijn eigen verstand te twijfelen."
+    },
+    {
+      "url": "Movies/Speed 1994 Bluray 1080P Dts  Dxva-Lonewolf.mp4",
+      "title": "Speed",
+      "description": "Een bom onder een stadsbus zal ontploffen als de snelheid onder de 80 km/u daalt. LAPD-agent Jack Traven moet de bus op snelheid houden en de passagiers redden terwijl een gestoorde bommenmaker de controle eist."
+    },
+    {
+      "url": "Movies/The Bucket List 2007 Blu-Ray 1080P X264 Dd 5.1-Highcode.mp4",
+      "title": "The Bucket List",
+      "description": "Twee terminale patiënten — een rijke zakenman en een gewone monteur — vluchten uit het ziekenhuis om samen hun 'bucket list' af te werken: alles doen wat ze altijd al wilden doen voor ze sterven."
+    },
+    {
+      "url": "Movies/The.Devil's.Advocate.(1997).mp4",
+      "title": "The Devil's Advocate",
+      "description": "Een ambitieuze advocaat uit Florida wordt aangenomen door een prestigieus advocatenkantoor in New York, geleid door de charismatische John Milton. Langzaam ontdekt hij de duivelse prijs van zijn succes."
+    },
+    {
+      "url": "Movies/The.Hunt.For.Red.October.1990.Uhd.Mkvremux.2160P.Vision.Atmos.Nl-Mlf.mp4",
+      "title": "The Hunt for Red October",
+      "description": "Een Sovjet-onderzeeërkapitein navigeert zijn ultramoderne nucleaire onderzeeër richting Amerika, maar niemand weet of hij wil deserteren of aanvallen. CIA-analist Jack Ryan is de enige die de waarheid vermoedt."
+    },
+    {
+      "url": "Movies/The Jackal (1997)_1080p_subs.mp4",
+      "title": "The Jackal",
+      "description": "Een mysterieuze huurmoordenaar — bekend als 'The Jackal' — wordt ingehuurd voor een aanslag op de hoogste niveaus. De FBI werkt samen met een IRA-terrorist en een Russische agent om hem te stoppen."
+    },
+    {
+      "url": "Movies/The.Rock.1996.1080P.Dsnp.Web-Dl.Ddp5.1.H.264.Dual-Alfahd.mp4",
+      "title": "The Rock",
+      "description": "Een groep veteranen kaapt het eiland Alcatraz en bedreigt San Francisco met chemische raketten. Een FBI-chemicus en de enige man die ooit uit Alcatraz ontsnapte moeten samen de stad redden."
+    },
+    {
+      "url": "Movies/The Shawshank Redemption (1994) Bluray 2160P Hybrid Dv Hdr Dts-Hd Ma 5.1 Ac3 Hevc Nl-Retailsub Remux-Kappa.mp4",
+      "title": "The Shawshank Redemption",
+      "description": "Bankier Andy Dufresne wordt onterecht veroordeeld voor de moord op zijn vrouw en belandt in de gevangenis Shawshank. Over twintig jaar bouwt hij een bijzondere vriendschap op met Red en koestert hij een droom van vrijheid."
+    },
+    {
+      "url": "Movies/The.Simpsons.Movie.(2007).mp4",
+      "title": "The Simpsons Movie",
+      "description": "Homer vervuilt per ongeluk het meer van Springfield zo erg dat de EPA de stad onder een glazen koepel opsluit. De Simpsons vluchten naar Alaska maar Homer moet terugkeren om Springfield te redden."
+    }
+  ]
+}
