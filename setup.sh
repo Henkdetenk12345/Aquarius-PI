@@ -66,6 +66,13 @@ echo "Enabling services..."
 sudo systemctl enable aquarius-xvfb.service
 sudo systemctl enable aquarius.service
 
+echo "Loading V4L2 M2M codec module..."
+sudo modprobe bcm2835-codec
+echo "bcm2835-codec" | sudo tee /etc/modules-load.d/bcm2835-codec.conf > /dev/null
+
+echo "Adding user to video group..."
+sudo usermod -aG video $USER
+
 echo ""
 echo "Setup complete!"
 echo ""
