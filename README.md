@@ -1,7 +1,7 @@
 # Aquarius PI
 
 Raspberry Pi 5 playout system. Drives an RTMP stream using mpv, Chromium, and ffmpeg.
-To see how you configure programme lists and nmptv.json please refer to the [aquarius readme.md](https://github.com/avrovulcanxh607/aquarius/blob/master/README.md).
+To see how you configure programme lists and nmptv.json please refer to the [Aquarius readme.md](https://github.com/avrovulcanxh607/aquarius/blob/master/README.md).
 
 ## Requirements
 
