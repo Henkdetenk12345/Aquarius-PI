@@ -56,10 +56,13 @@ class Aquarius:
 					if not chunk:
 						break
 					resp += chunk
+					if b"\n" in resp:
+						break
 			except socket.timeout:
 				pass
 			s.close()
-			return json.loads(resp.decode(errors="replace")) if resp else None
+			first_line = resp.split(b"\n")[0]
+			return json.loads(first_line.decode(errors="replace")) if first_line else None
 		except Exception as e:
 			log(f"mpv IPC ({os.path.basename(sock_path)}): {e}")
 			return None
@@ -101,9 +104,8 @@ class Aquarius:
 		cmd = (
 			f"ffmpeg -hide_banner -loglevel warning -y "
 			f"-f x11grab -video_size {self.resolution} -framerate {self.framerate} -i {self.display} "
-			f"-f pulse -ar 44100 -ac 2 -i default "
+			f"-f pulse -ar 44100 -ac 2 -i aquarius.monitor "
 			f"-c:v libx264 -preset ultrafast -tune zerolatency -pix_fmt yuv420p -g {self.framerate * 2} "
-			f"-af aresample=async=1 "
 			f"-c:a aac -b:a 128k "
 			f"-f flv '{rtmp_url}'"
 		)
@@ -122,7 +124,7 @@ class Aquarius:
 			f"DISPLAY={self.display} mpv "
 			f"--no-terminal "
 			f"--input-ipc-server={sock_path} "
-			f"--vo=x11 --hwdec=no "
+			f"--vo=gpu --gpu-api=opengl --gpu-context=x11egl --hwdec=auto-safe "
 			f"--no-sub --no-audio-display "
 			f"--fullscreen --fs "
 			f"--no-input-default-bindings "
@@ -197,6 +199,7 @@ class Aquarius:
 			f"--kiosk --noerrdialogs --disable-infobars "
 			f"--disable-session-crashed-bubble --disable-restore-session-state "
 			f"--no-first-run --disable-gpu "
+			f"--disable-software-rasterizer "
 			f"--hide-scrollbars --autoplay-policy=no-user-gesture-required "
 			f"--disable-features=ScrollbarUI "
 			f"--window-size={self.resolution.replace('x', ',')} "
