@@ -124,7 +124,7 @@ class Aquarius:
 			f"DISPLAY={self.display} mpv "
 			f"--no-terminal "
 			f"--input-ipc-server={sock_path} "
-			f"--vo=gpu --gpu-api=opengl --gpu-context=x11egl --hwdec=auto-safe "
+			f"--vo=x11 --hwdec=no "
 			f"--no-sub --no-audio-display "
 			f"--fullscreen --fs "
 			f"--no-input-default-bindings "
@@ -198,13 +198,13 @@ class Aquarius:
 			f"DISPLAY={self.display} {path} "
 			f"--kiosk --noerrdialogs --disable-infobars "
 			f"--disable-session-crashed-bubble --disable-restore-session-state "
-			f"--no-first-run --disable-gpu "
-			f"--disable-software-rasterizer "
+			f"--no-first-run "
+			f"--enable-gpu-rasterization --ignore-gpu-blocklist "
 			f"--hide-scrollbars --autoplay-policy=no-user-gesture-required "
 			f"--disable-features=ScrollbarUI "
 			f"--window-size={self.resolution.replace('x', ',')} "
 			f"--window-position=0,0 --no-sandbox "
-			f"'{target}' > /dev/null 2>&1"
+			f"'{target}' > /tmp/aquarius-chromium.log 2>&1"
 		)
 		self.run_bg(["bash", "-c", cmd])
 		self.current_source = "chromium"
@@ -286,10 +286,8 @@ class Aquarius:
 
 		elif command["command"] == "LOAD":
 			url = command["url"]
-			log(f"LOAD (preloading): {url}")
+			log(f"LOAD: {url}")
 			self.pending_url = url
-			if not self.mpv_alive("media"):
-				self.start_mpv_instance("media", url, self.media_sock)
 
 		elif command["command"] == "PLAY":
 			if self.mpv_alive("media"):
