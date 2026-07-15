@@ -121,6 +121,7 @@ class Aquarius:
 		vlc_cmd = (
 			f"DISPLAY={self.display} vlc "
 			f"--no-video-title-show --no-spu "
+			f"--avcodec-hw=none "
 			f"--intf rc --rc-unix {sock_path} "
 			f"--vout=x11 "
 			f"--autoscale "
