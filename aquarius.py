@@ -31,11 +31,9 @@ class Aquarius:
 		self.current_url = None
 		self.pending_url = None
 		self.os1_sock = "/tmp/aquarius-mpv-os1.sock"
-		self.media_sock = "/tmp/aquarius-mpv-media.sock"
-		self.ident_sock = "/tmp/aquarius-mpv-ident.sock"
+		self.player_sock = "/tmp/aquarius-mpv-player.sock"
 		self.os1_proc = None
-		self.media_proc = None
-		self.ident_proc = None
+		self.player_proc = None
 
 	def run_bg(self, cmd, **kwargs):
 		p = subprocess.Popen(cmd, env=self.env, **kwargs)
@@ -166,8 +164,17 @@ class Aquarius:
 		setattr(self, f"{name}_proc", None)
 
 	def kill_all_mpvs(self):
-		for name in ["os1", "media", "ident"]:
+		for name in ["os1", "player"]:
 			self.kill_mpv_instance(name)
+
+	def player_loadfile(self, url):
+		if self.mpv_alive("player"):
+			log(f"player loadfile -> {url}")
+			self.mpv_send(self.player_sock, ["loadfile", url, "replace"])
+			self.current_url = url
+		else:
+			self.start_mpv_instance("player", url, self.player_sock)
+			self.current_url = url
 
 	def start_chromium(self, url=None, kill_mpvs=True):
 		if self.current_source == "chromium" and self.current_url == url:
@@ -198,12 +205,12 @@ class Aquarius:
 			f"DISPLAY={self.display} {path} "
 			f"--kiosk --noerrdialogs --disable-infobars "
 			f"--disable-session-crashed-bubble --disable-restore-session-state "
-			f"--no-first-run "
-			f"--enable-gpu-rasterization --ignore-gpu-blocklist "
-			f"--hide-scrollbars --autoplay-policy=no-user-gesture-required "
-			f"--disable-features=ScrollbarUI "
+			f"--no-first-run --no-sandbox "
+			f"--disable-gpu "
+			f"--autoplay-policy=no-user-gesture-required "
+			f"--hide-scrollbars --disable-features=ScrollbarUI "
 			f"--window-size={self.resolution.replace('x', ',')} "
-			f"--window-position=0,0 --no-sandbox "
+			f"--window-position=0,0 "
 			f"'{target}' > /tmp/aquarius-chromium.log 2>&1"
 		)
 		self.run_bg(["bash", "-c", cmd])
@@ -229,7 +236,7 @@ class Aquarius:
 				pass
 		for p in ["mpv", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
 			subprocess.run(["pkill", "-9", "-f", p], capture_output=True)
-		for f in [self.os1_sock, self.media_sock, self.ident_sock]:
+		for f in [self.os1_sock, self.player_sock]:
 			if os.path.exists(f):
 				os.remove(f)
 		log("ALL STOPPED")
@@ -242,8 +249,7 @@ class Aquarius:
 
 			if scene == "OS 1":
 				self.kill_chromium()
-				self.kill_mpv_instance("ident")
-				self.kill_mpv_instance("media")
+				self.kill_mpv_instance("player")
 				os1_url = self.config.get("os1_rtmp_url", "")
 				if os1_url:
 					self.start_mpv_instance("os1", os1_url, self.os1_sock)
@@ -251,13 +257,11 @@ class Aquarius:
 
 			elif scene == "Media 1":
 				self.kill_chromium()
-				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("os1")
 				url = self.pending_url or self.current_url
 				if url:
-					if not self.mpv_alive("media"):
-						self.start_mpv_instance("media", url, self.media_sock)
-					self.current_source = "media"
-					self.current_url = url
+					self.player_loadfile(url)
+					self.current_source = "player"
 				else:
 					log("Media 1: no URL loaded")
 
@@ -267,17 +271,18 @@ class Aquarius:
 				ident_folder = self.config.get("ident_folder", "/home/max/idents")
 				idents = glob.glob(os.path.join(ident_folder, "*.mp4"))
 				if idents:
-					self.start_mpv_instance("ident", random.choice(idents), self.ident_sock)
+					self.player_loadfile(random.choice(idents))
+					self.current_source = "player"
 				else:
 					log(f"WARNING: No MP4s in {ident_folder}")
 
 			elif scene == "Clock":
-				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("player")
 				self.kill_mpv_instance("os1")
 				self.start_chromium(self.config.get("clock_url", "about:blank"), kill_mpvs=False)
 
 			elif scene == "Breakfiller":
-				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("player")
 				self.kill_mpv_instance("os1")
 				self.start_chromium(self.config.get("breakfiller_url", "about:blank"), kill_mpvs=False)
 
@@ -290,9 +295,9 @@ class Aquarius:
 			self.pending_url = url
 
 		elif command["command"] == "PLAY":
-			if self.mpv_alive("media"):
+			if self.mpv_alive("player"):
 				try:
-					self.mpv_send(self.media_sock, ["set_property", "pause", False])
+					self.mpv_send(self.player_sock, ["set_property", "pause", False])
 				except:
 					pass
 
@@ -325,7 +330,7 @@ def main():
 	print("Aquarius starting up...")
 	for p in ["mpv", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
 		subprocess.run(["pkill", "-9", "-f", p], capture_output=True)
-	for f in [aquarius.os1_sock, aquarius.media_sock, aquarius.ident_sock, "/tmp/aquarius.log"]:
+	for f in [aquarius.os1_sock, aquarius.player_sock, "/tmp/aquarius.log"]:
 		if os.path.exists(f):
 			os.remove(f)
 	time.sleep(1)

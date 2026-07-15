@@ -8,5 +8,5 @@ pkill -9 -f "ffmpeg.*flv"
 pkill -9 -f Xvfb
 pkill -9 -f openbox
 pkill -9 -f unclutter
-rm -f /tmp/aquarius-mpv-os1.sock /tmp/aquarius-mpv-media.sock /tmp/aquarius-mpv-ident.sock /tmp/aquarius.log
+rm -f /tmp/aquarius-mpv-os1.sock /tmp/aquarius-mpv-player.sock /tmp/aquarius.log
 echo "All stopped."
