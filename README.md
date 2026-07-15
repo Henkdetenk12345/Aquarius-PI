@@ -112,26 +112,12 @@ mpv uses JSON IPC over Unix sockets:
   "os1_rtmp_url": "rtmp://source/stream",
   "clock_url": "https://intern.bollenstreekmedianetwerk.nl/klok2/",
   "breakfiller_url": "https://intern.bollenstreekmedianetwerk.nl/textbulletin2/test.php",
-  "ident_folder": "/mnt/video/Fillers/bmntv2/idents",
+  "ident_folder": "/mnt/video/Fillers/bmntv2/idents/",
   "display": ":99",
   "resolution": "1920x1080",
   "framerate": 25
 }
 ```
-
-## Troubleshooting
-
-### Chromium white screen
-- `--ozone-platform=x11` is required on Pi 5 when using Xvfb (Chromium defaults to Wayland)
-- `--disable-gpu` prevents GPU compositing issues on virtual display
-- `--kiosk` hides browser UI elements
-
-### No audio from Chromium
-- `--autoplay-policy=no-user-gesture-required` allows autoplay without user interaction
-
-### mpv black screen
-- `--vo=x11` works with Xvfb (not `--vo=gpu`)
-- `--hwdec=no` (hardware decoding not available with `--vo=x11`)
 
 ## Systemd
 
