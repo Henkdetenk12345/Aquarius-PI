@@ -12,7 +12,7 @@ echo "Installing dependencies..."
 sudo apt install -y \
     xvfb \
     ffmpeg \
-    vlc \
+    mpv \
     chromium-browser \
     python3 \
     python3-pip \

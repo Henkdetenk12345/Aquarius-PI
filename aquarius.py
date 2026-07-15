@@ -30,9 +30,9 @@ class Aquarius:
 		self.current_source = None
 		self.current_url = None
 		self.pending_url = None
-		self.os1_sock = "/tmp/aquarius-vlc-os1.sock"
-		self.media_sock = "/tmp/aquarius-vlc-media.sock"
-		self.ident_sock = "/tmp/aquarius-vlc-ident.sock"
+		self.os1_sock = "/tmp/aquarius-mpv-os1.sock"
+		self.media_sock = "/tmp/aquarius-mpv-media.sock"
+		self.ident_sock = "/tmp/aquarius-mpv-ident.sock"
 		self.os1_proc = None
 		self.media_proc = None
 		self.ident_proc = None
@@ -42,13 +42,13 @@ class Aquarius:
 		self.children.append(p)
 		return p
 
-	def vlc_send(self, sock_path, command):
+	def mpv_send(self, sock_path, command):
 		try:
 			s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 			s.settimeout(3)
 			s.connect(sock_path)
-			s.send((command + "\n").encode())
-			time.sleep(0.2)
+			s.send(json.dumps({"command": command}).encode() + b"\n")
+			time.sleep(0.1)
 			resp = b""
 			try:
 				while True:
@@ -59,12 +59,12 @@ class Aquarius:
 			except socket.timeout:
 				pass
 			s.close()
-			return resp.decode(errors="replace")
+			return json.loads(resp.decode(errors="replace")) if resp else None
 		except Exception as e:
-			log(f"VLC IPC ({os.path.basename(sock_path)}): {e}")
+			log(f"mpv IPC ({os.path.basename(sock_path)}): {e}")
 			return None
 
-	def vlc_alive(self, name):
+	def mpv_alive(self, name):
 		proc = getattr(self, f"{name}_proc")
 		sock = getattr(self, f"{name}_sock")
 		return proc and proc.poll() is None and os.path.exists(sock)
@@ -109,70 +109,70 @@ class Aquarius:
 		)
 		self.run_bg(["bash", "-c", cmd], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
-	def start_vlc_instance(self, name, url, sock_path):
-		if self.vlc_alive(name):
-			log(f"{name} VLC already running")
+	def start_mpv_instance(self, name, url, sock_path):
+		if self.mpv_alive(name):
+			log(f"{name} mpv already running")
 			return True
 
 		if os.path.exists(sock_path):
 			os.remove(sock_path)
 
-		log(f"Starting {name} VLC -> {url}")
-		vlc_cmd = (
-			f"DISPLAY={self.display} vlc "
-			f"--no-video-title-show --no-spu "
-			f"--avcodec-hw=none "
-			f"--intf rc --rc-unix {sock_path} "
-			f"--vout=x11 "
-			f"--autoscale "
-			f"--fullscreen "
-			f"--no-loop --no-repeat "
-			f'"{url}" > /tmp/aquarius-vlc-{name}.log 2>&1'
+		log(f"Starting {name} mpv -> {url}")
+		mpv_cmd = (
+			f"DISPLAY={self.display} mpv "
+			f"--no-terminal "
+			f"--input-ipc-server={sock_path} "
+			f"--vo=x11 --hwdec=no "
+			f"--no-sub --no-audio-display "
+			f"--fullscreen --fs "
+			f"--no-input-default-bindings "
+			f"--loop=no "
+			f'"{url}" > /tmp/aquarius-mpv-{name}.log 2>&1'
 		)
 
-		proc = self.run_bg(["bash", "-c", vlc_cmd])
+		proc = self.run_bg(["bash", "-c", mpv_cmd])
 		setattr(self, f"{name}_proc", proc)
 
 		for i in range(60):
 			time.sleep(0.5)
 			if os.path.exists(sock_path):
-				log(f"{name} VLC ready ({(i+1)*0.5}s)")
+				log(f"{name} mpv ready ({(i+1)*0.5}s)")
 				return True
 
-		log(f"{name} VLC FAILED to start")
+		log(f"{name} mpv FAILED to start")
 		try:
-			with open(f"/tmp/aquarius-vlc-{name}.log") as f:
-				log(f"{name} VLC log: {f.read()[:2000]}")
+			with open(f"/tmp/aquarius-mpv-{name}.log") as f:
+				log(f"{name} mpv log: {f.read()[:2000]}")
 		except:
 			pass
 		return False
 
-	def kill_vlc_instance(self, name):
+	def kill_mpv_instance(self, name):
 		proc = getattr(self, f"{name}_proc")
 		sock_path = getattr(self, f"{name}_sock")
 		if proc and proc.poll() is None:
-			log(f"Stopping {name} VLC")
+			log(f"Stopping {name} mpv")
 			try:
-				self.vlc_send(sock_path, "quit")
+				self.mpv_send(sock_path, ["quit"])
 			except:
 				pass
 			proc.kill()
-		pattern = f"rc-unix {sock_path}"
+		pattern = f"input-ipc-server={sock_path}"
 		subprocess.run(["pkill", "-9", "-f", pattern], capture_output=True)
 		if os.path.exists(sock_path):
 			os.remove(sock_path)
 		setattr(self, f"{name}_proc", None)
 
-	def kill_all_vlcs(self):
+	def kill_all_mpvs(self):
 		for name in ["os1", "media", "ident"]:
-			self.kill_vlc_instance(name)
+			self.kill_mpv_instance(name)
 
-	def start_chromium(self, url=None, kill_vlcs=True):
+	def start_chromium(self, url=None, kill_mpvs=True):
 		if self.current_source == "chromium" and self.current_url == url:
 			return
 
-		if kill_vlcs:
-			self.kill_all_vlcs()
+		if kill_mpvs:
+			self.kill_all_mpvs()
 
 		if self.current_source == "chromium":
 			log(f"Navigate chromium -> {url}")
@@ -224,7 +224,7 @@ class Aquarius:
 				proc.kill()
 			except:
 				pass
-		for p in ["vlc", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
+		for p in ["mpv", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
 			subprocess.run(["pkill", "-9", "-f", p], capture_output=True)
 		for f in [self.os1_sock, self.media_sock, self.ident_sock]:
 			if os.path.exists(f):
@@ -239,20 +239,20 @@ class Aquarius:
 
 			if scene == "OS 1":
 				self.kill_chromium()
-				self.kill_vlc_instance("ident")
-				self.kill_vlc_instance("media")
+				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("media")
 				os1_url = self.config.get("os1_rtmp_url", "")
 				if os1_url:
-					self.start_vlc_instance("os1", os1_url, self.os1_sock)
+					self.start_mpv_instance("os1", os1_url, self.os1_sock)
 					self.current_source = "os1"
 
 			elif scene == "Media 1":
 				self.kill_chromium()
-				self.kill_vlc_instance("ident")
+				self.kill_mpv_instance("ident")
 				url = self.pending_url or self.current_url
 				if url:
-					if not self.vlc_alive("media"):
-						self.start_vlc_instance("media", url, self.media_sock)
+					if not self.mpv_alive("media"):
+						self.start_mpv_instance("media", url, self.media_sock)
 					self.current_source = "media"
 					self.current_url = url
 				else:
@@ -260,23 +260,23 @@ class Aquarius:
 
 			elif scene == "Ident":
 				self.kill_chromium()
-				self.kill_vlc_instance("os1")
+				self.kill_mpv_instance("os1")
 				ident_folder = self.config.get("ident_folder", "/home/max/idents")
 				idents = glob.glob(os.path.join(ident_folder, "*.mp4"))
 				if idents:
-					self.start_vlc_instance("ident", random.choice(idents), self.ident_sock)
+					self.start_mpv_instance("ident", random.choice(idents), self.ident_sock)
 				else:
 					log(f"WARNING: No MP4s in {ident_folder}")
 
 			elif scene == "Clock":
-				self.kill_vlc_instance("ident")
-				self.kill_vlc_instance("os1")
-				self.start_chromium(self.config.get("clock_url", "about:blank"), kill_vlcs=False)
+				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("os1")
+				self.start_chromium(self.config.get("clock_url", "about:blank"), kill_mpvs=False)
 
 			elif scene == "Breakfiller":
-				self.kill_vlc_instance("ident")
-				self.kill_vlc_instance("os1")
-				self.start_chromium(self.config.get("breakfiller_url", "about:blank"), kill_vlcs=False)
+				self.kill_mpv_instance("ident")
+				self.kill_mpv_instance("os1")
+				self.start_chromium(self.config.get("breakfiller_url", "about:blank"), kill_mpvs=False)
 
 		elif command["command"] == "PREVIEW":
 			pass
@@ -285,13 +285,13 @@ class Aquarius:
 			url = command["url"]
 			log(f"LOAD (preloading): {url}")
 			self.pending_url = url
-			if not self.vlc_alive("media"):
-				self.start_vlc_instance("media", url, self.media_sock)
+			if not self.mpv_alive("media"):
+				self.start_mpv_instance("media", url, self.media_sock)
 
 		elif command["command"] == "PLAY":
-			if self.vlc_alive("media"):
+			if self.mpv_alive("media"):
 				try:
-					self.vlc_send(self.media_sock, "play")
+					self.mpv_send(self.media_sock, ["set_property", "pause", False])
 				except:
 					pass
 
@@ -311,7 +311,7 @@ def main():
 		aquarius.start_ffmpeg_output()
 		os1_url = aquarius.config.get("os1_rtmp_url", "")
 		if os1_url:
-			aquarius.start_vlc_instance("os1", os1_url, aquarius.os1_sock)
+			aquarius.start_mpv_instance("os1", os1_url, aquarius.os1_sock)
 		log("OS1 playing - Ctrl+C to stop")
 		print("OS1 playing - Ctrl+C to stop")
 		try:
@@ -322,7 +322,7 @@ def main():
 		sys.exit(0)
 
 	print("Aquarius starting up...")
-	for p in ["vlc", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
+	for p in ["mpv", "chromium", "ffmpeg", "Xvfb", "openbox", "unclutter"]:
 		subprocess.run(["pkill", "-9", "-f", p], capture_output=True)
 	for f in [aquarius.os1_sock, aquarius.media_sock, aquarius.ident_sock, "/tmp/aquarius.log"]:
 		if os.path.exists(f):
@@ -332,7 +332,7 @@ def main():
 	aquarius.start_pulse()
 	os1_url = aquarius.config.get("os1_rtmp_url", "")
 	if os1_url:
-		aquarius.start_vlc_instance("os1", os1_url, aquarius.os1_sock)
+		aquarius.start_mpv_instance("os1", os1_url, aquarius.os1_sock)
 	aquarius.start_ffmpeg_output()
 	time.sleep(2)
 
