@@ -8,6 +8,6 @@
   "clock_url": "https://intern.bollenstreekmedianetwerk.nl/klok2/",
   "breakfiller_url": "https://intern.bollenstreekmedianetwerk.nl/textbulletin2/test.php",
   "video_base_url": "A:/Video/Film & TV/",
-  "ident_folder": "/home/max/idents",
+  "ident_folder": "/home/max/idents/",
   "command_output": "command_output.json"
 }
