@@ -220,25 +220,28 @@ class Aquarius:
 			self.mpv_send(sock, ["loadfile", url, "replace"])
 		else:
 			self.start_mpv_instance(name, url, sock)
-			time.sleep(1)
-		self.mpv_send(sock, ["set_property", "pause", True])
+		self.player_pause(name)
 		self.move_window(["--name", f"aquarius-{name}"], self.other_desktop())
 		self.current_url = url
 		return name
 
 	def player_unpause(self, name):
 		sock = getattr(self, f"{name}_sock")
-		try:
-			self.mpv_send(sock, ["set_property", "pause", False])
-		except:
-			pass
+		for i in range(5):
+			resp = self.mpv_send(sock, ["set_property", "pause", False])
+			if resp and resp.get("error") == "success":
+				return
+			time.sleep(0.2)
+		log(f"WARNING: could not unpause {name}")
 
 	def player_pause(self, name):
 		sock = getattr(self, f"{name}_sock")
-		try:
-			self.mpv_send(sock, ["set_property", "pause", True])
-		except:
-			pass
+		for i in range(5):
+			resp = self.mpv_send(sock, ["set_property", "pause", True])
+			if resp and resp.get("error") == "success":
+				return
+			time.sleep(0.2)
+		log(f"WARNING: could not pause {name}")
 
 	def chromium_stage(self, url):
 		name = self.chromium_inactive()
@@ -257,7 +260,7 @@ class Aquarius:
 		cmd = (
 			f"DISPLAY={self.display} {path} "
 			f"--ozone-platform=x11 --no-sandbox --disable-gpu "
-			f"--kiosk --class=aquarius-{name} "
+			f"--kiosk-mode --class=aquarius-{name} "
 			f"--user-data-dir=/tmp/aquarius-{name}-profile "
 			f"--autoplay-policy=no-user-gesture-required "
 			f"--disable-backgrounding-occluded-windows "
@@ -289,10 +292,6 @@ class Aquarius:
 			self.kill_chromium()
 		else:
 			self.kill_chromium(self.chromium_inactive())
-		if self.current_source != "player":
-			for name in ["player_a", "player_b"]:
-				if name != self.player_active:
-					self.kill_mpv_instance(name)
 
 	def shutdown(self):
 		log("SHUTTING DOWN...")
@@ -340,8 +339,7 @@ class Aquarius:
 					old_active = self.player_active
 					self.player_active = name
 					self.player_unpause(name)
-					if self.mpv_alive(old_active):
-						self.player_pause(old_active)
+					self.player_pause(old_active)
 					self.current_source = "player"
 				self.cleanup_inactive()
 
@@ -355,8 +353,7 @@ class Aquarius:
 					old_active = self.player_active
 					self.player_active = name
 					self.player_unpause(name)
-					if self.mpv_alive(old_active):
-						self.player_pause(old_active)
+					self.player_pause(old_active)
 					self.current_source = "player"
 				else:
 					log(f"WARNING: No MP4s in {ident_folder}")
