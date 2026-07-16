@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Aquarius-PI Setup for Raspberry Pi 5"
+echo "Aquarius-Pi Setup for Raspberry Pi 5"
 echo "===================================="
 echo ""
 
@@ -17,6 +17,7 @@ sudo apt install -y \
     python3 \
     python3-pip \
     xdotool \
+    wmctrl \
     pulseaudio \
     pulseaudio-utils \
     x11-utils \
